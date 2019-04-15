@@ -9,7 +9,7 @@ passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback'
-    }, accessToke =>{
+    }, accessToken =>{
         console.log(accessToken);
         }
     )
@@ -22,6 +22,8 @@ app.get(
     })
 );
 
-const PORT = process.env.PORT || 6000;
+app.get('/auth/google/callback', passport.authenticate('google'));
+
+const PORT = process.env.PORT || 6200;
 
 app.listen(PORT);
