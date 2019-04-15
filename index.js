@@ -15,4 +15,13 @@ passport.use(new GoogleStrategy({
     )
 );
 
-app.listen(5000);
+app.get(
+    '/auth/google', 
+    passport.authenticate('google',{
+    scope: ['profile', 'email']
+    })
+);
+
+const PORT = process.env.PORT || 6000;
+
+app.listen(PORT);
